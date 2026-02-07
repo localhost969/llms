@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Localhost's Personal LLM Collection</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Phosphor Icons (Clean Icon Library) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        neutral: {
+                            50: '#fafafa',
+                            100: '#f5f5f5',
+                            200: '#e5e5e5',
+                            300: '#d4d4d4',
+                            400: '#a3a3a3',
+                            500: '#737373',
+                            600: '#525252',
+                            700: '#404040',
+                            800: '#262626',
+                            900: '#171717',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Smooth scrolling and selection color */
+        html { scroll-behavior: smooth; }
+        ::selection { background-color: #000; color: #fff; }
+        
+        /* Subtle fade in for cards */
+        .fade-up {
+            animation: fadeUp 0.6s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card-delay-1 { animation-delay: 0.1s; }
+        .card-delay-2 { animation-delay: 0.2s; }
+        .card-delay-3 { animation-delay: 0.3s; }
+        .card-delay-4 { animation-delay: 0.4s; }
+        .card-delay-5 { animation-delay: 0.5s; }
+        .card-delay-6 { animation-delay: 0.6s; }
+        .card-delay-7 { animation-delay: 0.7s; }
+    </style>
+</head>
+<body class="bg-white text-neutral-900 antialiased min-h-screen flex flex-col">
+
+    <!-- Hero Section -->
+    <main class="flex-grow pt-32 pb-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16 max-w-2xl">
+                <h1 class="font-display text-5xl md:text-6xl font-medium tracking-tighter mb-6 leading-[1.1]">
+                    My Personal LLM <br>Collection.
+                </h1>
+                <p class="text-neutral-500 text-lg md:text-xl font-light leading-relaxed">
+                    A curated list of the most powerful, free-to-use Large Language Models. 
+                    Optimized for coding, research, security testing, and more.
+                </p>
+            </div>
+
+            <!-- Filter Badges -->
+            <div class="mb-12">
+                <div class="flex flex-wrap gap-3">
+                    <button class="filter-btn px-4 py-2 text-sm font-medium border border-neutral-200 rounded-full hover:border-neutral-900 hover:bg-neutral-900 hover:text-white transition-all duration-300" data-filter="all">All</button>
+                    <button class="filter-btn px-4 py-2 text-sm font-medium border border-neutral-200 rounded-full hover:border-neutral-900 hover:bg-neutral-900 hover:text-white transition-all duration-300" data-filter="coding">Coding</button>
+                    <button class="filter-btn px-4 py-2 text-sm font-medium border border-neutral-200 rounded-full hover:border-neutral-900 hover:bg-neutral-900 hover:text-white transition-all duration-300" data-filter="research">Research</button>
+                    <button class="filter-btn px-4 py-2 text-sm font-medium border border-neutral-200 rounded-full hover:border-neutral-900 hover:bg-neutral-900 hover:text-white transition-all duration-300" data-filter="image">Image</button>
+                    <button class="filter-btn px-4 py-2 text-sm font-medium border border-neutral-200 rounded-full hover:border-neutral-900 hover:bg-neutral-900 hover:text-white transition-all duration-300" data-filter="cybersec">Cybersec</button>
+                    <button class="filter-btn px-4 py-2 text-sm font-medium border border-neutral-200 rounded-full hover:border-neutral-900 hover:bg-neutral-900 hover:text-white transition-all duration-300" data-filter="reasoning">Reasoning</button>
+                    <button class="filter-btn px-4 py-2 text-sm font-medium border border-neutral-200 rounded-full hover:border-neutral-900 hover:bg-neutral-900 hover:text-white transition-all duration-300" data-filter="speed">Speed</button>
+                </div>
+            </div>
+
+            <!-- Grid Layout -->
+            <div id="cards-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            </div>
+        </div>
+    </main>
+
+   
+
+    <script>
+        const cardsData = [
+            {
+                image: 'images/google.png',
+                alt: 'Google AI Studio Interface',
+                title: 'Google AI Studio',
+                badge: 'Top Pick',
+                tags: [
+                    { icon: 'ph-code', text: 'Coding' },
+                    { icon: 'ph-image', text: 'Vision' }
+                ],
+                features: [
+                    '1 Million token context window',
+                    'No daily usage limits',
+                    'Best for UI & Full-stack coding'
+                ],
+                link: {
+                    href: 'https://aistudio.google.com/prompts/new_chat',
+                    text: 'Open Studio'
+                },
+                categories: 'coding,image'
+            },
+            {
+                image: 'images/kimi.png',
+                alt: 'Kimi AI Interface',
+                title: 'Kimi AI',
+                badge: null,
+                tags: [
+                    { icon: 'ph-bug', text: 'Bug Bounty' },
+                    { icon: 'ph-files', text: 'Research' }
+                ],
+                features: [
+                    'Excellent for PPT & Research',
+                    'Strong web search capabilities',
+                    'No usage limits'
+                ],
+                link: {
+                    href: 'https://www.kimi.com/',
+                    text: 'Visit Kimi'
+                },
+                categories: 'research,cybersec'
+            },
+            {
+                image: 'images/mistral.png',
+                alt: 'Mistral Interface',
+                title: 'Mistral',
+                badge: null,
+                tags: [
+                    { icon: 'ph-lightning', text: 'Speed' },
+                    { icon: 'ph-shield-check', text: 'Security' }
+                ],
+                features: [
+                    'High speed inference',
+                    'Great for bug bounty hunting',
+                    'No usage limits'
+                ],
+                link: {
+                    href: 'https://chat.mistral.ai/chat',
+                    text: 'Chat Mistral'
+                },
+                categories: 'speed,cybersec'
+            },
+            {
+                image: 'images/qwen.png',
+                alt: 'Qwen Interface',
+                title: 'Qwen',
+                badge: null,
+                tags: [
+                    { icon: 'ph-squares-four', text: 'Versatile' }
+                ],
+                features: [
+                    '20+ Specialized models available',
+                    'Effective for bug bounty',
+                    'No usage limits'
+                ],
+                link: {
+                    href: 'https://chat.qwen.ai/',
+                    text: 'Try Qwen'
+                },
+                categories: 'research,cybersec'
+            },
+            {
+                image: 'images/chatgpt.png',
+                alt: 'ChatGPT Interface',
+                title: 'ChatGPT',
+                badge: null,
+                tags: [
+                    { icon: 'ph-rocket-launch', text: 'Prototyping' },
+                    { icon: 'ph-info', text: 'Info' }
+                ],
+                features: [
+                    'Best for quick information lookup',
+                    'Fast prototyping code',
+                    'No login required for basic use'
+                ],
+                link: {
+                    href: 'https://chatgpt.com/',
+                    text: 'Launch GPT'
+                },
+                categories: 'coding,research'
+            },
+            {
+                image: 'images/grok.png',
+                alt: 'Grok Interface',
+                title: 'Grok',
+                badge: null,
+                tags: [
+                    { icon: 'ph-newspaper', text: 'Real-time' }
+                ],
+                features: [
+                    'Access to up-to-date information',
+                    'Good for bug bounty research'
+                ],
+                link: {
+                    href: 'https://grok.com/',
+                    text: 'Access Grok'
+                },
+                categories: 'research,cybersec'
+            },
+            {
+                image: 'images/deepseek.png',
+                alt: 'DeepSeek Interface',
+                title: 'DeepSeek',
+                badge: null,
+                tags: [
+                    { icon: 'ph-brain', text: 'Reasoning' },
+                    { icon: 'ph-math-operations', text: 'Math' }
+                ],
+                features: [
+                    'Superior complex text reasoning',
+                    'High logic capabilities',
+                    'Weaker UI generation capabilities'
+                ],
+                link: {
+                    href: 'https://chat.deepseek.com/',
+                    text: 'Start Reasoning'
+                },
+                categories: 'reasoning'
+            }
+        ];
+
+        function createCard(card, index) {
+            const article = document.createElement('article');
+            article.className = `group relative flex flex-col border border-neutral-200 bg-white hover:border-neutral-900 transition-colors duration-300 fade-up card-delay-${index + 1}`;
+            article.setAttribute('data-categories', card.categories);
+
+            const imgDiv = document.createElement('div');
+            imgDiv.className = 'w-full aspect-video bg-neutral-100 border-b border-neutral-100 overflow-hidden relative';
+
+            const img = document.createElement('img');
+            img.src = card.image;
+            img.alt = card.alt;
+            img.className = 'w-full h-full object-contain opacity-100';
+            imgDiv.appendChild(img);
+            article.appendChild(imgDiv);
+
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'p-6 flex flex-col flex-grow';
+
+            const headerDiv = document.createElement('div');
+            headerDiv.className = 'flex justify-between items-start mb-4';
+
+            const h2 = document.createElement('h2');
+            h2.className = 'font-display text-2xl font-semibold';
+            h2.textContent = card.title;
+            headerDiv.appendChild(h2);
+
+            if (card.badge) {
+                const badge = document.createElement('span');
+                badge.className = 'px-2 py-1 text-xs border border-neutral-200 rounded-full font-medium text-neutral-600';
+                badge.textContent = card.badge;
+                headerDiv.appendChild(badge);
+            }
+            contentDiv.appendChild(headerDiv);
+
+            const tagsDiv = document.createElement('div');
+            tagsDiv.className = 'flex flex-wrap gap-2 mb-6';
+            card.tags.forEach(tag => {
+                const tagDiv = document.createElement('div');
+                tagDiv.className = 'flex items-center gap-1 text-xs font-medium text-neutral-500';
+                const icon = document.createElement('i');
+                icon.className = tag.icon;
+                tagDiv.appendChild(icon);
+                const span = document.createElement('span');
+                span.textContent = tag.text;
+                tagDiv.appendChild(span);
+                tagsDiv.appendChild(tagDiv);
+            });
+            contentDiv.appendChild(tagsDiv);
+
+            const ul = document.createElement('ul');
+            ul.className = 'space-y-3 mb-8 flex-grow';
+            card.features.forEach(feature => {
+                const li = document.createElement('li');
+                li.className = 'flex items-start gap-3 text-sm text-neutral-600';
+                const icon = document.createElement('i');
+                if (feature.includes('Weaker')) {
+                    icon.className = 'ph ph-warning-circle mt-0.5 text-neutral-400';
+                } else {
+                    icon.className = 'ph ph-check mt-0.5 text-neutral-900';
+                }
+                li.appendChild(icon);
+                const span = document.createElement('span');
+                span.textContent = feature;
+                li.appendChild(span);
+                ul.appendChild(li);
+            });
+            contentDiv.appendChild(ul);
+
+            const a = document.createElement('a');
+            a.href = card.link.href;
+            a.target = '_blank';
+            a.className = 'flex items-center justify-between w-full py-3 px-4 bg-neutral-50 hover:bg-neutral-900 hover:text-white border border-neutral-200 hover:border-neutral-900 transition-all duration-300 group/btn';
+            const span = document.createElement('span');
+            span.className = 'font-medium text-sm';
+            span.textContent = card.link.text;
+            a.appendChild(span);
+            const arrow = document.createElement('i');
+            arrow.className = 'ph ph-arrow-up-right group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform';
+            a.appendChild(arrow);
+            contentDiv.appendChild(a);
+
+            article.appendChild(contentDiv);
+            return article;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const grid = document.getElementById('cards-grid');
+            cardsData.forEach((card, index) => {
+                const article = createCard(card, index);
+                grid.appendChild(article);
+            });
+
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const cards = document.querySelectorAll('article[data-categories]');
+
+            // Set initial active button
+            const allButton = document.querySelector('.filter-btn[data-filter="all"]');
+            allButton.classList.add('bg-neutral-900', 'text-white', 'border-neutral-900');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('active', 'bg-neutral-900', 'text-white', 'border-neutral-900');
+                        btn.classList.add('border-neutral-200');
+                    });
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active', 'bg-neutral-900', 'text-white', 'border-neutral-900');
+                    this.classList.remove('border-neutral-200');
+                    
+                    // Filter cards
+                    cards.forEach(card => {
+                        const categories = card.getAttribute('data-categories').split(',');
+                        if (filter === 'all' || categories.includes(filter)) {
+                            card.style.display = 'flex';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
