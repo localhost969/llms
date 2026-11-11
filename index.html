@@ -67,6 +67,8 @@
         .card-delay-5 { animation-delay: 0.5s; }
         .card-delay-6 { animation-delay: 0.6s; }
         .card-delay-7 { animation-delay: 0.7s; }
+        .card-delay-8 { animation-delay: 0.8s; }
+        .card-delay-9 { animation-delay: 0.9s; }
     </style>
 </head>
 <body class="bg-white text-neutral-900 antialiased min-h-screen flex flex-col">
@@ -134,19 +136,20 @@
                 title: 'Kimi AI',
                 badge: null,
                 tags: [
-                    { icon: 'ph-bug', text: 'Bug Bounty' },
-                    { icon: 'ph-files', text: 'Research' }
+                    { icon: 'ph-bug', text: 'Cybersec' },
+                    { icon: 'ph-files', text: 'Research' },
+                    { icon: 'ph-code', text: 'Coding' }
                 ],
                 features: [
                     'Excellent for PPT & Research',
                     'Strong web search capabilities',
-                    'No usage limits'
+                    'Better visual capabilities & UI for coding'
                 ],
                 link: {
                     href: 'https://www.kimi.com/',
                     text: 'Visit Kimi'
                 },
-                categories: 'research,cybersec'
+                categories: 'research,cybersec,coding,image'
             },
             {
                 image: 'images/mistral.png',
@@ -159,8 +162,8 @@
                 ],
                 features: [
                     'High speed inference',
-                    'Great for bug bounty hunting',
-                    'No usage limits'
+                    'Great for cybersec work',
+                    'Very generous usage limits'
                 ],
                 link: {
                     href: 'https://chat.mistral.ai/chat',
@@ -177,8 +180,8 @@
                     { icon: 'ph-squares-four', text: 'Versatile' }
                 ],
                 features: [
-                    '20+ Specialized models available',
-                    'Effective for bug bounty',
+                    '10+ Specialized models available',
+                    'Effective for cybersec work',
                     'No usage limits'
                 ],
                 link: {
@@ -217,7 +220,7 @@
                 ],
                 features: [
                     'Access to up-to-date information',
-                    'Good for bug bounty research'
+                    'Good for cybersec research'
                 ],
                 link: {
                     href: 'https://grok.com/',
@@ -244,6 +247,46 @@
                     text: 'Start Reasoning'
                 },
                 categories: 'reasoning'
+            },
+            {
+                image: 'images/zai.png',
+                alt: 'Z.ai Interface',
+                title: 'Z.ai',
+                badge: null,
+                tags: [
+                    { icon: 'ph-code', text: 'Coding' },
+                    { icon: 'ph-shield-check', text: 'Cybersec' }
+                ],
+                features: [
+                    'Good for UI generation',
+                    'Solid for cybersec work',
+                    'Weaker website UI/UX'
+                ],
+                link: {
+                    href: 'https://chat.z.ai/',
+                    text: 'Open Z.ai'
+                },
+                categories: 'coding,cybersec'
+            },
+            {
+                image: 'images/claude.png',
+                alt: 'Claude Interface',
+                title: 'Claude',
+                badge: 'Goated 🐐',
+                tags: [
+                    { icon: 'ph-code', text: 'Coding' },
+                    { icon: 'ph-brain', text: 'Reasoning' }
+                ],
+                features: [
+                    'Top-tier coding & UI generation',
+                    'Excellent reasoning and writing',
+                    'Very low free usage limits'
+                ],
+                link: {
+                    href: 'https://claude.ai/',
+                    text: 'Chat with Claude'
+                },
+                categories: 'coding,reasoning,research,cybersec'
             }
         ];
 
@@ -302,7 +345,7 @@
                 const li = document.createElement('li');
                 li.className = 'flex items-start gap-3 text-sm text-neutral-600';
                 const icon = document.createElement('i');
-                if (feature.includes('Weaker')) {
+                if (feature.includes('Weaker') || feature.includes('Very low')) {
                     icon.className = 'ph ph-warning-circle mt-0.5 text-neutral-400';
                 } else {
                     icon.className = 'ph ph-check mt-0.5 text-neutral-900';
